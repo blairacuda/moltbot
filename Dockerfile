@@ -24,10 +24,6 @@ COPY scripts ./scripts
 RUN pnpm install --frozen-lockfile
 
 COPY . .
-
-# Clone google/A2UI into vendor/a2ui (submodule not included in Docker context)
-RUN git clone --depth 1 https://github.com/google/A2UI.git vendor/a2ui
-   
 RUN pnpm build
 # Force pnpm for UI build (Bun may fail on ARM/Synology architectures)
 ENV CLAWDBOT_PREFER_PNPM=1
