@@ -39,10 +39,11 @@ apps/ios/build
 **/*.trace
 
 # large app trees not needed for CLI build
-apps/
 assets/
 Peekaboo/
 Swabble/
 Core/
 Users/
-vendor/
+
+# apps/  # needed for a2ui build
+# vendor/  # needed for a2ui build
