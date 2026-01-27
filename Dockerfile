@@ -24,6 +24,10 @@ COPY scripts ./scripts
 RUN pnpm install --frozen-lockfile
 
 COPY . .
+
+# Skip A2UI bundling if directories are missing (submodule issue)
+RUN mkdir -p apps/shared/ClawdbotKit/Tools/CanvasA2UI vendor/a2ui/renderers/lit
+   
 RUN pnpm build
 # Force pnpm for UI build (Bun may fail on ARM/Synology architectures)
 ENV CLAWDBOT_PREFER_PNPM=1
