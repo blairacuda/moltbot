@@ -37,8 +37,4 @@ ENV NODE_ENV=production
 # This reduces the attack surface by preventing container escape via root privileges
 USER node
 
-# Create config with token-only auth (no device pairing)
-RUN mkdir -p /data/.clawdbot && \
-    echo '{"gateway":{"mode":"local","controlUi":{"allowInsecureAuth":true}}}' > /data/.clawdbot/clawdbot.json
-
 CMD ["node", "dist/index.js", "gateway", "--port", "10000", "--bind", "lan", "--allow-unconfigured"]
