@@ -25,8 +25,8 @@ RUN pnpm install --frozen-lockfile
 
 COPY . .
 
-# Skip A2UI bundling if directories are missing (submodule issue)
-RUN mkdir -p apps/shared/ClawdbotKit/Tools/CanvasA2UI vendor/a2ui/renderers/lit
+# Clone google/A2UI into vendor/a2ui (submodule not included in Docker context)
+RUN git clone --depth 1 https://github.com/google/A2UI.git vendor/a2ui
    
 RUN pnpm build
 # Force pnpm for UI build (Bun may fail on ARM/Synology architectures)
